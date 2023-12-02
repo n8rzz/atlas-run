@@ -14,7 +14,7 @@ export function Questions(props: IProps) {
 
   return (
     <form>
-      <ul className={'my-6'}>
+      <ul>
         {props.options.map((question) => (
           <li key={question.value}>
             <label>

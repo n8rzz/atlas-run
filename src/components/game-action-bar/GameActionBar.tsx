@@ -5,17 +5,16 @@ import { GameMode } from './GameActionBar.constants.ts';
 import { usStatesWithCities } from '../../domain/states-and-cities.ts';
 import { buildCitiesOptionList } from './GameActionBar.utils.ts';
 import { QuestionHeader } from './question-header/QuestionHeader.tsx';
+import { ResultBanner } from './result-banner/ResultBanner.tsx';
 
 export function GameActionBar() {
   const [gameSetting, setGameSetting] = useState<GameMode>(
     GameMode.StateCapitals,
   );
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [selectedStateIndex, _] = useState<number>(
-    Math.floor(Math.random() * usStatesWithCities.length),
-  );
+  const [selectedStateIndex, setSelectedStateIndex] = useState<number>(0);
   const [answerAttemptCount, setAnswerAttemptCount] = useState<number>(0);
-  const [answer, setAnswer] = useState<string>('n/a');
+  const [answer, setAnswer] = useState<string>('');
 
   const selectedStateWithCities = usStatesWithCities[selectedStateIndex];
   const citiesOptionList = buildCitiesOptionList(selectedStateWithCities);
@@ -46,6 +45,12 @@ export function GameActionBar() {
         <QuestionHeader
           answer={answer}
           answerAttemptCount={answerAttemptCount}
+          selectedStateWithCities={selectedStateWithCities}
+          onClickNext={() => setSelectedStateIndex(selectedStateIndex + 1)}
+        />
+
+        <ResultBanner
+          answer={answer}
           selectedStateWithCities={selectedStateWithCities}
         />
 
