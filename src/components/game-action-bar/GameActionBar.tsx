@@ -27,6 +27,7 @@ export function GameActionBar() {
   const handleReset = () => {
     setSelectedStateIndex(0);
     setAnswerAttemptCount(0);
+    // TODO: reset capital too
   };
 
   return (
