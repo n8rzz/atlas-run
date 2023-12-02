@@ -23,6 +23,17 @@ export function GameActionBar() {
   const handleSelectAnswer = (selectedAnswer: string) => {
     setAnswerAttemptCount(answerAttemptCount + 1);
     setAnswer(selectedAnswer);
+
+    validateAnswer(selectedAnswer);
+  };
+
+  const validateAnswer = (selectedAnswer: string) => {
+    const visual =
+      selectedAnswer === selectedStateWithCities.capital
+        ? '=== === :::: '
+        : '!!! !!! !!!! ';
+
+    console.log(visual, selectedAnswer, selectedStateWithCities.capital);
   };
 
   return (

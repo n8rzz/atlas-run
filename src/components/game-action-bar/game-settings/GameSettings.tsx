@@ -12,10 +12,12 @@ export function GameSettings(props: IProps) {
   };
 
   return (
-    <div className={'flex items-center'}>
-      <h2 className={'my-2'}>
-        {`Settings: `} <b>{gameModeLabels[props.selectedGameMode]}</b>
-      </h2>
+    <div>
+      <div className={'text-center'}>
+        <h2 className={'my-2'}>
+          {`Settings: `} <b>{gameModeLabels[props.selectedGameMode]}</b>
+        </h2>
+      </div>
 
       <div className={'ml-2'}>
         <select
