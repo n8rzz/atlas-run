@@ -1,30 +1,35 @@
 import { ChangeEvent } from 'react';
+import { GameMode, gameModeLabels } from '../GameActionBar.constants.ts';
 
 interface IProps {
-  handleChangeGameSettings: (setting: string) => void;
-  value: string;
+  handleChangeGameSettings: (setting: GameMode) => void;
+  selectedGameMode: GameMode;
 }
 
 export function GameSettings(props: IProps) {
   const handleGameSettingsChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    props.handleChangeGameSettings(event.target.value);
+    props.handleChangeGameSettings(event.target.value as GameMode);
   };
 
   return (
-    <div className={'flex'}>
+    <div className={'flex items-center'}>
       <h2 className={'my-2'}>
-        {`Settings: `} <b>{props.value}</b>
+        {`Settings: `} <b>{gameModeLabels[props.selectedGameMode]}</b>
       </h2>
 
-      <div className={'ml-2 flex items-center'}>
+      <div className={'ml-2'}>
         <select
           name={'game-settings'}
           onChange={handleGameSettingsChange}
         >
-          <option value={'State Capitals'}>{'State Capitals'}</option>
-          <option value={'Capital States'}>{'Capital States'}</option>
-          <option value={'States'}>{'States'}</option>
-          <option value={'Cities'}>{'Cities'}</option>
+          <option value={GameMode.StateCapitals}>
+            {gameModeLabels[GameMode.StateCapitals]}
+          </option>
+          <option value={GameMode.CapitalStates}>
+            {gameModeLabels[GameMode.CapitalStates]}
+          </option>
+          {/*<option value={'States'}>{'States'}</option>*/}
+          {/*<option value={'Cities'}>{'Cities'}</option>*/}
         </select>
       </div>
     </div>

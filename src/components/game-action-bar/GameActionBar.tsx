@@ -1,34 +1,49 @@
 import { Fragment, useState } from 'react';
 import { GameSettings } from './game-settings/GameSettings';
 import { Questions } from './questions/Questions';
-import { questionListMock, usStates } from './__mock__/questions.mock.ts';
+import { GameMode } from './GameActionBar.constants.ts';
+import { usStatesWithCities } from '../../domain/states-and-cities.ts';
+import { buildCitiesOptionList } from './GameActionBar.utils.ts';
+import { QuestionHeader } from './question-header/QuestionHeader.tsx';
 
 export function GameActionBar() {
-  // FIXME: move value to enum
-  const [gameSetting, setGameSetting] = useState<string>('Capitals');
+  const [gameSetting, setGameSetting] = useState<GameMode>(
+    GameMode.StateCapitals,
+  );
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedStateIndex, _] = useState<number>(
+    Math.floor(Math.random() * usStatesWithCities.length),
+  );
   const [answerAttemptCount, setAnswerAttemptCount] = useState<number>(0);
   const [answer, setAnswer] = useState<string>('n/a');
 
-  const randomStateIndex = Math.floor(Math.random() * usStates.length);
+  const selectedStateWithCities = usStatesWithCities[selectedStateIndex];
+  const citiesOptionList = buildCitiesOptionList(selectedStateWithCities);
 
-  const handleSelectAnswer = (answer: string) => {
+  const handleSelectAnswer = (selectedAnswer: string) => {
     setAnswerAttemptCount(answerAttemptCount + 1);
-    setAnswer(answer);
+    setAnswer(selectedAnswer);
   };
 
   return (
     <Fragment>
       <GameSettings
         handleChangeGameSettings={setGameSetting}
-        value={gameSetting}
+        selectedGameMode={gameSetting}
       />
-      <Questions
-        answerAttemptCount={answerAttemptCount}
-        currentStateName={usStates[randomStateIndex].name}
-        currentValue={answer}
-        handleSelectAnswer={handleSelectAnswer}
-        options={questionListMock}
-      />
+      <div className={'mt-4 text-left'}>
+        <QuestionHeader
+          answer={answer}
+          answerAttemptCount={answerAttemptCount}
+          selectedStateWithCities={selectedStateWithCities}
+        />
+
+        <Questions
+          currentValue={answer}
+          handleSelectAnswer={handleSelectAnswer}
+          options={citiesOptionList}
+        />
+      </div>
     </Fragment>
   );
 }

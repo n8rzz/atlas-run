@@ -1,25 +1,6 @@
-import { ILabelValue } from '../questions/Questions.types.ts';
+import { IStateWithCities } from './states-and-cities.types.ts';
 
-export const questionListMock: ILabelValue[] = [
-  {
-    label: 'Flagstaff',
-    value: 'Flagstaff',
-  },
-  {
-    label: 'Mesa',
-    value: 'Mesa',
-  },
-  {
-    label: 'Phoenix',
-    value: 'Phoenix',
-  },
-  {
-    label: 'Tuscon',
-    value: 'Tuscon',
-  },
-];
-
-export const usStates = [
+export const usStatesWithCities: IStateWithCities[] = [
   {
     name: 'Alaska',
     capital: 'Juneau',
