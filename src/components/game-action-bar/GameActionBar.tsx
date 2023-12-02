@@ -22,17 +22,11 @@ export function GameActionBar() {
   const handleSelectAnswer = (selectedAnswer: string) => {
     setAnswerAttemptCount(answerAttemptCount + 1);
     setAnswer(selectedAnswer);
-
-    validateAnswer(selectedAnswer);
   };
 
-  const validateAnswer = (selectedAnswer: string) => {
-    const visual =
-      selectedAnswer === selectedStateWithCities.capital
-        ? '=== === :::: '
-        : '!!! !!! !!!! ';
-
-    console.log(visual, selectedAnswer, selectedStateWithCities.capital);
+  const handleReset = () => {
+    setSelectedStateIndex(0);
+    setAnswerAttemptCount(0);
   };
 
   return (
@@ -45,8 +39,10 @@ export function GameActionBar() {
         <QuestionHeader
           answer={answer}
           answerAttemptCount={answerAttemptCount}
+          selectedStateIndex={selectedStateIndex}
           selectedStateWithCities={selectedStateWithCities}
           onClickNext={() => setSelectedStateIndex(selectedStateIndex + 1)}
+          onClickReset={handleReset}
         />
 
         <ResultBanner
