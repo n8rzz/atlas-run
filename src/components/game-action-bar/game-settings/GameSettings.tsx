@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import { GameMode, gameModeLabels } from '../GameActionBar.constants.ts';
+import { UiLabelInputGroup } from '../../shared/ui-label-input-group/UiLabelInputGroup.tsx';
 
 interface IProps {
   handleChangeGameSettings: (setting: GameMode) => void;
@@ -12,16 +13,20 @@ export function GameSettings(props: IProps) {
   };
 
   return (
-    <div>
+    <div className={'my-3 text-left'}>
       <div className={'text-center'}>
-        <h2 className={'my-2'}>
-          {`Settings: `} <b>{gameModeLabels[props.selectedGameMode]}</b>
-        </h2>
+        <h2 className={'font-bold'}>{'Settings'}</h2>
       </div>
 
-      <div className={'ml-2'}>
+      <UiLabelInputGroup>
+        <label
+          className={'mr-2'}
+          htmlFor={'gameMode'}
+        >
+          {'Game Mode'}
+        </label>
         <select
-          name={'game-settings'}
+          name={'gameMode'}
           onChange={handleGameSettingsChange}
         >
           <option value={GameMode.StateCapitals}>
@@ -33,7 +38,22 @@ export function GameSettings(props: IProps) {
           {/*<option value={'States'}>{'States'}</option>*/}
           {/*<option value={'Cities'}>{'Cities'}</option>*/}
         </select>
-      </div>
+      </UiLabelInputGroup>
+
+      <UiLabelInputGroup>
+        <label
+          className={'mr-2'}
+          htmlFor={'capitalSelectionMode'}
+        >
+          {'Capital Selection Mode'}
+        </label>
+        <select name={'capitalSelectionMode'}>
+          <option value={'capitalsOnly'}>{'Capitals Only'}</option>
+          <option value={'capitalAndStateCities'}>
+            {'Capital & State Cities'}
+          </option>
+        </select>
+      </UiLabelInputGroup>
     </div>
   );
 }

@@ -6,7 +6,13 @@ export function App() {
       <div className={'w-full min-w-[400px]'}>
         <GameActionBar />
       </div>
-      <div className={'mt-3'}>{'MAP'}</div>
+      <div
+        className={
+          'mt-8 w-full h-[300px] border-2 border-amber-600 border-solid'
+        }
+      >
+        {'MAP'}
+      </div>
     </div>
   );
 }

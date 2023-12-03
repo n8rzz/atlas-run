@@ -11,7 +11,6 @@ export function GameActionBar() {
   const [gameSetting, setGameSetting] = useState<GameMode>(
     GameMode.StateCapitals,
   );
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedStateIndex, setSelectedStateIndex] = useState<number>(0);
   const [answerAttemptCount, setAnswerAttemptCount] = useState<number>(0);
   const [answer, setAnswer] = useState<string>('');
@@ -26,8 +25,13 @@ export function GameActionBar() {
 
   const handleReset = () => {
     setSelectedStateIndex(0);
+    setAnswer('');
     setAnswerAttemptCount(0);
-    // TODO: reset capital too
+  };
+
+  const handleMoveToNextQuestion = () => {
+    setSelectedStateIndex(selectedStateIndex + 1);
+    setAnswer('');
   };
 
   return (
@@ -42,8 +46,6 @@ export function GameActionBar() {
           answerAttemptCount={answerAttemptCount}
           selectedStateIndex={selectedStateIndex}
           selectedStateWithCities={selectedStateWithCities}
-          onClickNext={() => setSelectedStateIndex(selectedStateIndex + 1)}
-          onClickReset={handleReset}
         />
 
         <ResultBanner
@@ -52,9 +54,14 @@ export function GameActionBar() {
         />
 
         <Questions
+          answer={answer}
           currentValue={answer}
           handleSelectAnswer={handleSelectAnswer}
+          onClickNext={handleMoveToNextQuestion}
+          onClickReset={handleReset}
           options={citiesOptionList}
+          selectedStateIndex={selectedStateIndex}
+          selectedStateWithCities={selectedStateWithCities}
         />
       </div>
     </Fragment>

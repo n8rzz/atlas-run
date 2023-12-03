@@ -1619,3 +1619,5 @@ export const usStatesWithCities: IStateWithCities[] = [
     population: 578759,
   },
 ];
+
+export const usCapitalCities = usStatesWithCities.map((state) => state.capital);
