@@ -12,7 +12,7 @@ export function UiButton(props: IProps) {
 
   return (
     <button
-      className={clsx('px-2', className)}
+      className={clsx('p-4', className)}
       disabled={disabled}
       onClick={props.onClick}
     >

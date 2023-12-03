@@ -1,17 +1,14 @@
 import { GameActionBar } from './components/game-action-bar/GameActionBar';
+import { UsStatesMap } from './components/us-states-map/UsStatesMap.tsx';
 
 export function App() {
   return (
     <div className={'flex flex-col align-center'}>
-      <div className={'w-full min-w-[400px]'}>
+      <div className={'mx-auto min-w-[500px]'}>
         <GameActionBar />
       </div>
-      <div
-        className={
-          'mt-8 w-full h-[300px] border-2 border-amber-600 border-solid'
-        }
-      >
-        {'MAP'}
+      <div className={'mt-8 h-[500px] overflow-hidden'}>
+        <UsStatesMap />
       </div>
     </div>
   );
