@@ -6,11 +6,10 @@ import { usStatesWithCities } from '../../domain/states-and-cities.ts';
 import { buildCitiesOptionList } from './GameActionBar.utils.ts';
 import { QuestionHeader } from './question-header/QuestionHeader.tsx';
 import { ResultBanner } from './result-banner/ResultBanner.tsx';
+import { ActionButtons } from './action-buttons/ActionButtons.tsx';
 
 export function GameActionBar() {
-  const [gameSetting, setGameSetting] = useState<GameMode>(
-    GameMode.StateCapitals,
-  );
+  const [gameSetting, setGameSetting] = useState<GameMode>(GameMode.StateCapitals);
   const [selectedStateIndex, setSelectedStateIndex] = useState<number>(0);
   const [answerAttemptCount, setAnswerAttemptCount] = useState<number>(0);
   const [answer, setAnswer] = useState<string>('');
@@ -47,12 +46,10 @@ export function GameActionBar() {
           selectedStateIndex={selectedStateIndex}
           selectedStateWithCities={selectedStateWithCities}
         />
-
         <ResultBanner
           answer={answer}
           selectedStateWithCities={selectedStateWithCities}
         />
-
         <Questions
           answer={answer}
           currentValue={answer}
@@ -60,6 +57,13 @@ export function GameActionBar() {
           onClickNext={handleMoveToNextQuestion}
           onClickReset={handleReset}
           options={citiesOptionList}
+          selectedStateIndex={selectedStateIndex}
+          selectedStateWithCities={selectedStateWithCities}
+        />
+        <ActionButtons
+          answer={answer}
+          onClickNext={handleMoveToNextQuestion}
+          onClickReset={handleReset}
           selectedStateIndex={selectedStateIndex}
           selectedStateWithCities={selectedStateWithCities}
         />

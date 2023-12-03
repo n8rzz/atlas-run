@@ -1,25 +1,29 @@
 import { UiButton } from './UiButton.tsx';
 import { render, screen } from '@testing-library/react';
-import { vitest } from 'vitest';
 
 describe('UiButton', () => {
-  const classNameMock = '';
-  const disabledMock = false;
   const onClickMock = vitest.fn();
 
   describe('when passed default props', () => {
     test('should render', () => {
+      render(<UiButton onClick={onClickMock}>{'UiButton'}</UiButton>);
+
+      expect(screen.getByRole('button', { name: 'UiButton' })).toBeInTheDocument();
+    });
+  });
+
+  describe('when #disabled is passed as true', () => {
+    test('should render a disabled button', () => {
       render(
         <UiButton
-          className={classNameMock}
-          disabled={disabledMock}
+          disabled={true}
           onClick={onClickMock}
         >
-          {'UiButton'}
+          {'Disabled UiButton'}
         </UiButton>,
       );
 
-      expect(screen.getByRole('button', { name: 'UiButton' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Disabled UiButton' })).toBeDisabled();
     });
   });
 });

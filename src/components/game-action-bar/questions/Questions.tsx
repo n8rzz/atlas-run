@@ -1,7 +1,5 @@
 import { ChangeEvent } from 'react';
 import { ILabelValue } from './Questions.types.ts';
-import { UiButton } from '../../shared/ui-button/UiButton.tsx';
-import { UiResetButton } from '../../shared/ui-reset-button/UiResetButton.tsx';
 import { IStateWithCities } from '../../../domain/states-and-cities.types.ts';
 
 interface IProps {
@@ -41,22 +39,6 @@ export function Questions(props: IProps) {
           ))}
         </ul>
       </form>
-
-      <div className={'flex flex-col space-x-2'}>
-        <UiButton
-          className={'disabled:opacity-75'}
-          disabled={props.answer !== props.selectedStateWithCities.capital}
-          onClick={props.onClickNext}
-        >
-          {'Next Question'}
-        </UiButton>
-        <UiResetButton
-          disabled={props.selectedStateIndex === 0}
-          onClick={props.onClickReset}
-        >
-          {'Reset'}
-        </UiResetButton>
-      </div>
     </div>
   );
 }

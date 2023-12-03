@@ -2,16 +2,18 @@ import { PropsWithChildren } from 'react';
 import clsx from 'clsx';
 
 interface IProps extends PropsWithChildren {
-  className: string;
-  disabled: boolean;
+  className?: string;
+  disabled?: boolean;
   onClick: () => void;
 }
 
 export function UiButton(props: IProps) {
+  const { className = '', disabled = false } = props;
+
   return (
     <button
-      className={clsx(props.className)}
-      disabled={props.disabled}
+      className={clsx('px-2', className)}
+      disabled={disabled}
       onClick={props.onClick}
     >
       {props.children}
