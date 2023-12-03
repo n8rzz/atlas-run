@@ -43,20 +43,19 @@ export function Questions(props: IProps) {
       </form>
 
       <div className={'flex flex-col space-x-2'}>
-        <button
+        <UiButton
           className={'disabled:opacity-75'}
           disabled={props.answer !== props.selectedStateWithCities.capital}
           onClick={props.onClickNext}
         >
-          <UiButton>{'Next Question'}</UiButton>
-        </button>
-        <button
-          className={'disabled:opacity-75'}
+          {'Next Question'}
+        </UiButton>
+        <UiResetButton
           disabled={props.selectedStateIndex === 0}
           onClick={props.onClickReset}
         >
-          <UiResetButton>{'Reset'}</UiResetButton>
-        </button>
+          {'Reset'}
+        </UiResetButton>
       </div>
     </div>
   );
