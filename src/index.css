@@ -55,7 +55,7 @@ button {
 }
 
 button:hover {
-  border-color: var(--color-primary);;
+  border-color: var(--color-primary);
   cursor: pointer;
 }
 
@@ -85,6 +85,13 @@ button:focus-visible {
   padding: 2rem;
   text-align: center;
   width: 100vw;
+}
+
+.title {
+  color: #ffa06b;
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 800;
 }
 
 .leaflet-container {

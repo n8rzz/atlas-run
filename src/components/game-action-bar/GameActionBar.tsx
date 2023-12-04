@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react';
 import { GameSettings } from './game-settings/GameSettings';
 import { Questions } from './questions/Questions';
-import { GameMode } from './GameActionBar.constants.ts';
+import { GameMode, GameState } from './GameActionBar.constants.ts';
 import { usStatesWithCities } from '../../domain/states-and-cities.ts';
 import { buildCitiesOptionList } from './GameActionBar.utils.ts';
 import { QuestionHeader } from './question-header/QuestionHeader.tsx';
@@ -9,7 +9,8 @@ import { ResultBanner } from './result-banner/ResultBanner.tsx';
 import { ActionButtons } from './action-buttons/ActionButtons.tsx';
 
 export function GameActionBar() {
-  const [gameSetting, setGameSetting] = useState<GameMode>(GameMode.StateCapitals);
+  const [gameState, setGameState] = useState<GameState>(GameState.Off);
+  const [gameSetting, setGameSetting] = useState<GameMode>(GameMode.None);
   const [selectedStateIndex, setSelectedStateIndex] = useState<number>(0);
   const [answerAttemptCount, setAnswerAttemptCount] = useState<number>(0);
   const [answer, setAnswer] = useState<string>('');
@@ -33,6 +34,10 @@ export function GameActionBar() {
     setAnswer('');
   };
 
+  const handleStartGame = () => {
+    setGameState(GameState.InProgress);
+  };
+
   return (
     <Fragment>
       <GameSettings
@@ -53,9 +58,12 @@ export function GameActionBar() {
         <Questions
           answer={answer}
           currentValue={answer}
+          disabled={gameState === GameState.Off}
           handleSelectAnswer={handleSelectAnswer}
+          isStartButtonDisabled={gameSetting === GameMode.None}
           onClickNext={handleMoveToNextQuestion}
           onClickReset={handleReset}
+          onClickStartGame={handleStartGame}
           options={citiesOptionList}
           selectedStateIndex={selectedStateIndex}
           selectedStateWithCities={selectedStateWithCities}

@@ -1,0 +1,26 @@
+.startGameCover {
+    align-items: center;
+    background: rgba(20, 20, 20, 0.2);
+    display: flex;
+    height: 120px;
+    justify-content: center;
+    width: 100%;
+}
+
+.startGameCover button,
+.startGameCover button:disabled:hover {
+    background: #2e4862;
+    color: #e1eabf;
+    font-weight: bold;
+    padding: 1rem 3rem;
+}
+
+.startGameCover button:hover {
+    background: #6ac5c9;
+    color: #1d253b;
+}
+
+.startGameCover button:disabled:hover {
+    border: #2e4862;
+    cursor: not-allowed;
+}

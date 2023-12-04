@@ -18,42 +18,41 @@ export function GameSettings(props: IProps) {
         <h2 className={'font-bold'}>{'Settings'}</h2>
       </div>
 
-      <UiLabelInputGroup>
-        <label
-          className={'mr-2'}
-          htmlFor={'gameMode'}
-        >
-          {'Game Mode'}
-        </label>
-        <select
-          name={'gameMode'}
-          onChange={handleGameSettingsChange}
-        >
-          <option value={GameMode.StateCapitals}>
-            {gameModeLabels[GameMode.StateCapitals]}
-          </option>
-          <option value={GameMode.CapitalStates}>
-            {gameModeLabels[GameMode.CapitalStates]}
-          </option>
-          {/*<option value={'States'}>{'States'}</option>*/}
-          {/*<option value={'Cities'}>{'Cities'}</option>*/}
-        </select>
-      </UiLabelInputGroup>
-
-      <UiLabelInputGroup>
-        <label
-          className={'mr-2'}
-          htmlFor={'capitalSelectionMode'}
-        >
-          {'Capital Selection Mode'}
-        </label>
-        <select name={'capitalSelectionMode'}>
-          <option value={'capitalsOnly'}>{'Capitals Only'}</option>
-          <option value={'capitalAndStateCities'}>
-            {'Capital & State Cities'}
-          </option>
-        </select>
-      </UiLabelInputGroup>
+      <form>
+        <UiLabelInputGroup>
+          <label
+            className={'mr-2'}
+            htmlFor={'gameMode'}
+          >
+            {'Game Mode'}
+          </label>
+          <select
+            id={'gameMode'}
+            name={'gameMode'}
+            onChange={handleGameSettingsChange}
+          >
+            <option value={GameMode.None}>{gameModeLabels[GameMode.None]}</option>
+            <option value={GameMode.StateCapitals}>{gameModeLabels[GameMode.StateCapitals]}</option>
+            <option value={GameMode.CapitalStates}>{gameModeLabels[GameMode.CapitalStates]}</option>
+          </select>
+        </UiLabelInputGroup>
+        <UiLabelInputGroup>
+          <label
+            className={'mr-2'}
+            htmlFor={'capitalSelectionMode'}
+          >
+            {'Capital Selection Mode'}
+          </label>
+          <select
+            id={'capitalSelectionMode'}
+            name={'capitalSelectionMode'}
+          >
+            <option value={'None'}>{'---'}</option>
+            <option value={'capitalsOnly'}>{'Capitals Only'}</option>
+            <option value={'capitalAndStateCities'}>{'Capital & State Cities'}</option>
+          </select>
+        </UiLabelInputGroup>
+      </form>
     </div>
   );
 }
