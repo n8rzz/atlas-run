@@ -1,12 +1,11 @@
 import { GameActionBar } from './components/game-action-bar/GameActionBar';
 import { UsStatesMap } from './components/us-states-map/UsStatesMap.tsx';
+import { Title } from './components/game-action-bar/title/Title.tsx';
 
 export function App() {
   return (
     <div className={'flex flex-col align-center'}>
-      <header className={'mb-3'}>
-        <h1 className={'title relative'}>{'Atlas Run'}</h1>
-      </header>
+      <Title />
 
       <div className={'mx-auto min-w-[500px]'}>
         <GameActionBar />

@@ -11,15 +11,15 @@ export function ResultBanner(props: IProps) {
     props.answer !== '' && props.answer === props.selectedStateWithCities.capital;
 
   if (props.answer === '') {
-    return null;
+    return <div className={'my-4 px-2 py-2 text-center rounded'} />;
   }
 
   return (
     <div
       className={clsx({
-        ['my-4 px-2 py-2 text-center rounded']: true,
-        ['bg-red-300 text-white']: !hasCorrectAnswer,
-        ['bg-green-300 text-black']: hasCorrectAnswer,
+        ['my-4 px-2 py-2 text-center text-black font-bold rounded']: true,
+        ['bg-red-300']: !hasCorrectAnswer,
+        ['bg-green-300']: hasCorrectAnswer,
       })}
     >
       <b>

@@ -14,10 +14,6 @@ export function GameSettings(props: IProps) {
 
   return (
     <div className={'my-3 text-left'}>
-      <div className={'text-center'}>
-        <h2 className={'font-bold'}>{'Settings'}</h2>
-      </div>
-
       <form>
         <UiLabelInputGroup>
           <label
